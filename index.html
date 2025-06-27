@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تحميل وثائق الأستاذ(ة)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+<body class="bg-light" style="text-align: right;">
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <img src="logo soutien sco.png" alt="logo" class="img-fluid rounded-3 shadow-sm" style="max-height: 90px;">
+    </div>
+    <h3 class="text-center mb-4"><div>
+        <h3 class="text-center mb-1">مشروع الدعم التربوي برسم الموسم الدراسي 2024- 2025</h3>
+        <h5 class="text-center text-secondary mb-4">📁 منصة رقمية لتحميل وثائق الأستاذ(ة)</h5>
+    </div></h3>
+    <div class="card p-4 shadow">
+        <div class="mb-3">
+            <label class="form-label">اختر المؤسسة:</label>
+            <select class="form-select" id="etabSelect" onchange="updateEnseignants()">
+                <option value="">-- اختر المؤسسة --</option>
+                
+                    <option value="مجموعة مدارس النصر">مجموعة مدارس النصر</option>
+                
+                    <option value="م.م ايت زكان">م.م ايت زكان</option>
+                
+                    <option value="م.م تعمارت">م.م تعمارت</option>
+                
+                    <option value="م.م أسيمور">م.م أسيمور</option>
+                
+                    <option value="م.م امزودار">م.م امزودار</option>
+                
+                    <option value="م م تصويت">م م تصويت</option>
+                
+                    <option value="م م زاوية مولاي عبد المالك">م م زاوية مولاي عبد المالك</option>
+                
+                    <option value="م.م بوتغرار">م.م بوتغرار</option>
+                
+                    <option value="م.م الكومت">م.م الكومت</option>
+                
+                    <option value="م.م ايت اوزين">م.م ايت اوزين</option>
+                
+                    <option value="م.م زاوية البئر">م.م زاوية البئر</option>
+                
+                    <option value="م.م اكديم نخرطان">م.م اكديم نخرطان</option>
+                
+                    <option value="م.م بوكافر اكنيون">م.م بوكافر اكنيون</option>
+                
+                    <option value="م.م إغنسلن">م.م إغنسلن</option>
+                
+                    <option value="م.م  اكيس امزدار">م.م  اكيس امزدار</option>
+                
+                    <option value="م.م تزلافت">م.م تزلافت</option>
+                
+                    <option value="م.م ايت علي ويكو">م.م ايت علي ويكو</option>
+                
+                    <option value="م.م تدفالت">م.م تدفالت</option>
+                
+                    <option value="م.م ايت ايعلا">م.م ايت ايعلا</option>
+                
+                    <option value="م.م عسو بسلام">م.م عسو بسلام</option>
+                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">اختر اسم الأستاذ(ة):</label>
+            <select class="form-select" id="enseignantSelect">
+                <option value="">-- اختر الأستاذ(ة) --</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">أدخل كلمة المرور:</label>
+            <input type="password" class="form-control" id="passwordInput">
+        </div>
+        <button class="btn btn-primary w-100" onclick="verifyAccess()">الولوج إلى الوثائق</button>
+        <div id="message" class="mt-3 text-danger fw-bold"></div>
+    </div>
+</div>
+
+<script>
+const data = {"مجموعة مدارس النصر": [{"enseignant": "احمد اغزيف", "lien": "https://drive.google.com/drive/folders/1EPu2_QH76-Std_NrSCUTRNErMeF_T_mr", "mdp": "1965346"}, {"enseignant": "راسي عبد الهادي", "lien": "https://drive.google.com/drive/folders/1LG7nVUKYw0N14iOdmnTs0IewB3LvwKjC", "mdp": "2320420"}], "م.م ايت زكان": [{"enseignant": "مصطفى باحماد", "lien": "https://drive.google.com/drive/folders/1cL661-gu-5V0ge0q_wKbEECiM38upVq-", "mdp": "1965695"}, {"enseignant": "اسماعيل اعدجار", "lien": "https://drive.google.com/drive/folders/1HrI13QVA8IOuugqoeG4wQ_qbN67q6oLY", "mdp": "2320381"}, {"enseignant": "عبد المجيد عكوي", "lien": "https://drive.google.com/drive/folders/1OZ2inonTN2vfK1JhNubTP3Tjvlp6cR_q", "mdp": "2262212"}], "م.م تعمارت": [{"enseignant": "محمد أوخويا", "lien": "https://drive.google.com/drive/folders/1_aqJV2EZPodllxf_rcnD8pS_SYk0u3IX", "mdp": "2052462"}, {"enseignant": "رشيد بن داود", "lien": "https://drive.google.com/drive/folders/1GSMdBpgPHF0tREbymLKw_nVxUhCGfuo1", "mdp": "2262260"}, {"enseignant": "عامر اربا", "lien": "https://drive.google.com/drive/folders/1ydQ5O2z3ye5nOLPOgWDZaUYgxTZD2Dd5", "mdp": "2262295"}], "م.م أسيمور": [{"enseignant": "هشام بداح", "lien": "https://drive.google.com/drive/folders/1GtR42JX1mK6BfhtLYtHBZ2nOB7K4qnjM", "mdp": "2052444"}, {"enseignant": "محمد اخليفي", "lien": "https://drive.google.com/drive/folders/1KX_Wd6JoRuXwFHKWeEGba6YQn825lDrK", "mdp": "2156408"}, {"enseignant": "عزالدين مقدير", "lien": "https://drive.google.com/drive/folders/1Xm8Y3vfk93CJSFDzgHroSO3QBIWv8dwD", "mdp": "2017343"}], "م.م امزودار": [{"enseignant": "محمد المغوز", "lien": "https://drive.google.com/drive/folders/1Hwp019krqD585GvMNfg3cXgtb8oJ3a8i", "mdp": "1752830"}, {"enseignant": "عديش سعيد", "lien": "https://drive.google.com/drive/folders/1IcXzWKkyJdVlOlb0WlYQyqQqdZgx7dRC", "mdp": "2017317"}, {"enseignant": "عبد الهادي  حودي", "lien": "https://drive.google.com/drive/folders/1amvJgzu0Oimv_GqFV1GqEODRsvg6aJm_", "mdp": "2156390"}], "م م تصويت": [{"enseignant": "مصطفى بلمودن", "lien": "https://drive.google.com/drive/folders/1IWwS26O5xFCzp233fnUtWjjepEelvsWX", "mdp": "1965670"}, {"enseignant": "ادريس عمري", "lien": "https://drive.google.com/drive/folders/1C_7AlwhxBQKY2l0PQQ8X3Ri1B-AlufSe", "mdp": "2106390"}, {"enseignant": "تيتاو يوسف", "lien": "https://drive.google.com/drive/folders/18qU0jnBI-lEKWpXocu80Y-N_N8Wil03X", "mdp": "2156361"}], "م م زاوية مولاي عبد المالك": [{"enseignant": "حسن الناصري", "lien": "https://drive.google.com/drive/folders/1XuJkuEDRkLGNKd_heuoK47pAymbcW173", "mdp": "1718041"}, {"enseignant": "ايت بعزيز سفيان", "lien": "https://drive.google.com/drive/folders/1OHgOFpeWkl0lXuOvYHmLVxYbq79u_P6d", "mdp": "2017434"}, {"enseignant": "بالحاج مصطفى", "lien": "https://drive.google.com/drive/folders/18jzDSG9HI26KDV9TMrD90StBasYkeQQt", "mdp": "2052421"}], "م.م بوتغرار": [{"enseignant": "الوركي عبد الحق", "lien": "https://drive.google.com/drive/folders/1HCG6iZGWVhMxb4Phd0zrS1DXPiTSVC6N", "mdp": "2017357"}, {"enseignant": "احمد عديش", "lien": "https://drive.google.com/drive/folders/1qU8_gZo9IvsPCFpPYXOdFCa7WCm4uwh-", "mdp": "2052393"}, {"enseignant": "خالد اقرين", "lien": "https://drive.google.com/drive/folders/11k3tyhS7I96miys7HZLZvbF1URq17Wf-", "mdp": "2218178"}], "م.م الكومت": [{"enseignant": "الراشدي محمد", "lien": "https://drive.google.com/drive/folders/1ET79AHZsQeVR6PoPyiJCbswiaBe6Scl-", "mdp": "1400053"}, {"enseignant": "أحمد أفلا", "lien": "https://drive.google.com/drive/folders/1-I4okEGmiyskQw0Znc98C06bwnz5MMHI", "mdp": "1173171"}, {"enseignant": "مــــوجان يوســـــف", "lien": "https://drive.google.com/drive/folders/1KizPG-VbVj3iTVAzNY814_M_Chv7paUc", "mdp": "1400659"}], "م.م ايت اوزين": [{"enseignant": "عبد السلام الشنهاري", "lien": "https://drive.google.com/drive/folders/1eCuyo7u8dquhb4kM8KvHjMHq5_zH5wne", "mdp": "2052312"}, {"enseignant": "سعد الله شامي", "lien": "https://drive.google.com/drive/folders/1gbJRJlPQVp4xXL_Xk5NXMxOm3LU_HJ9D", "mdp": "2017328"}, {"enseignant": "حسن احناش", "lien": "https://drive.google.com/drive/folders/11SV6nKCsfSEWTuVm9zZsn1fRTEhqlZDj", "mdp": "2017380"}], "م.م زاوية البئر": [{"enseignant": "نجار الصديق", "lien": "https://drive.google.com/drive/folders/1NPNyMkwXNFVsiE8wcYmBmD4ti9Y8OIE7", "mdp": "1581263"}, {"enseignant": "أعبود زكرياء", "lien": "https://drive.google.com/drive/folders/1L7Kaq95PUllefsdHQ_tIbnC5v_LV-fkp", "mdp": "1158831"}, {"enseignant": "سكينة ادري", "lien": "https://drive.google.com/drive/folders/15rk2d8lq0w-21-kiX3Cw6-WVGyLrTObn", "mdp": "2017383"}], "م.م اكديم نخرطان": [{"enseignant": "محمد ايت الحسين", "lien": "https://drive.google.com/drive/folders/1iu5Wy0muMyRcExInSqEF-5Ho412iy8Zg", "mdp": "2017986"}, {"enseignant": "محمد بوينشا", "lien": "https://drive.google.com/drive/folders/1jOAXRg58V3rb5xMkrICqKwHWhBujyAeS", "mdp": "2156501"}, {"enseignant": "بويعيدي يوسف", "lien": "https://drive.google.com/drive/folders/11DfZeAeF8Q3s6OsGzm8Mu_M5fsPyss16", "mdp": "2156566"}], "م.م بوكافر اكنيون": [{"enseignant": "ابراهيم  بوتزكزاوين", "lien": "https://drive.google.com/drive/folders/1oamgbyjZUBv49ozgj8KR-UKgzIEPJCJh", "mdp": "1911426"}, {"enseignant": "كريم احمد", "lien": "https://drive.google.com/drive/folders/1SAPzQG0XH2V3OoO4dPmENkz72cZb_0aI", "mdp": "2052360"}, {"enseignant": "عيد العزيز ايسوفي", "lien": "https://drive.google.com/drive/folders/1dUgN898EsSKtr3KvixUIx6YTxxwZxauq", "mdp": "2156476"}], "م.م إغنسلن": [{"enseignant": "موساوي فاطمة", "lien": "https://drive.google.com/drive/folders/1vauS6ou2IhSCsR2vIFmKUj2QRrqQMFrj", "mdp": "2017379"}, {"enseignant": "ابراهيم بن عمرو", "lien": "https://drive.google.com/drive/folders/1WcaF8BerXPPfuhH2GvZVnVqTqdP1N1VU", "mdp": "2106356"}, {"enseignant": "مصطفى باكيري", "lien": "https://drive.google.com/drive/folders/1o6ND20WU4TVj0fopztnw0nOgTH4F0b_8", "mdp": "2262297"}], "م.م  اكيس امزدار": [{"enseignant": "المرشد علي", "lien": "https://drive.google.com/drive/folders/1Ll-Y59pN_iAxitd3x0BkRT1hIkDptaLk", "mdp": "2156473"}, {"enseignant": "عبد الله الأنوري", "lien": "https://drive.google.com/drive/folders/1UHFEaeZVA47TKVH8U3MKO9PVtJ6K_Kgz", "mdp": "2320289"}, {"enseignant": "صلاح الدين زدوق", "lien": "https://drive.google.com/drive/folders/11pEBfy-WlOgXUNwoNz79-mDAAbfSKRme", "mdp": "2320436"}], "م.م تزلافت": [{"enseignant": "حنان بامو", "lien": "https://drive.google.com/drive/folders/1skYiMR9tFzbUusFe5IFRLz2UQGiQ7N_n", "mdp": "2156378"}, {"enseignant": "عبد الرحمان بوا", "lien": "https://drive.google.com/drive/folders/1cjciC9U6JBjUDInaXzy0a8sumSKeYof6", "mdp": "1965682"}, {"enseignant": "ابراهيم بوجادي", "lien": "https://drive.google.com/drive/folders/1-Lk_WOShivDlpKNI1PFOQz2kCF_I6i-R", "mdp": "2156442"}], "م.م ايت علي ويكو": [{"enseignant": "أميمة حداني", "lien": "https://drive.google.com/drive/folders/1xE0Idcr-ZDXinw0N5kJeAKV8W0YocCfk", "mdp": "2262259"}, {"enseignant": "فاطمة الزهراء الطاهيري", "lien": "https://drive.google.com/drive/folders/1kNRheg7VEaxNJbOdL70aT7MohLsBA6fQ", "mdp": "2320396"}, {"enseignant": "واليد أزعي", "lien": "https://drive.google.com/drive/folders/1y3RrZyOgxFe8lv8Hdk5EIjoFE-2MaVF6", "mdp": "2357842"}], "م.م تدفالت": [{"enseignant": "علي الخالدي", "lien": "https://drive.google.com/drive/folders/1fnAa0AiqsLPtlueu_j0-HInkZQIKKmQd", "mdp": "2156502"}, {"enseignant": "عمراني  الحسين", "lien": "https://drive.google.com/drive/folders/1ab7WgZi7hkdKOMl942NURrnYE8v2532q", "mdp": "1965428"}, {"enseignant": "ايت تمغارت   امحمد", "lien": "https://drive.google.com/drive/folders/1grL9Yx8NyMo3-MBzDwvvA8ihDw8EtSOF", "mdp": "2019516"}], "م.م ايت ايعلا": [{"enseignant": "النجاري لحسن", "lien": "https://drive.google.com/drive/folders/1cmGTtstsmV3QB2f9XNYiUE_4cgqKNndj", "mdp": "1681203"}, {"enseignant": "أمكون عبد العالي", "lien": "https://drive.google.com/drive/folders/19WqriLMHZDUumucT_oEDVBV-kXO7sSHP", "mdp": "1404466"}, {"enseignant": "جعفر   البدوي", "lien": "https://drive.google.com/drive/folders/1I3W_Smc87t1lR8UCkxCu-dvzdK7lSgWx", "mdp": "1580407"}], "م.م عسو بسلام": [{"enseignant": "زكريا اوطوف", "lien": "https://drive.google.com/drive/folders/1Sv44WSLuGNU5EBBwV0NS66vgCi5JMce7", "mdp": "2218406"}, {"enseignant": "هموش محمود", "lien": "https://drive.google.com/drive/folders/1ZpLb4aZ60-hbm-mU8UzhG0WgzLm4ZvxM", "mdp": "1580823"}, {"enseignant": "رجاء بايشو", "lien": "https://drive.google.com/drive/folders/1eCwwlFL2ANgOaPCSsGvkfZyAIZuwzFZe", "mdp": "2320307"}]};
+
+function updateEnseignants() {
+    const etab = document.getElementById("etabSelect").value;
+    const enseignantSelect = document.getElementById("enseignantSelect");
+    enseignantSelect.innerHTML = '<option value="">-- اختر الأستاذ(ة) --</option>';
+    if (etab && data[etab]) {
+        data[etab].forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.enseignant;
+            option.textContent = item.enseignant;
+            enseignantSelect.appendChild(option);
+        });
+    }
+}
+
+function verifyAccess() {
+    const etab = document.getElementById("etabSelect").value;
+    const nom = document.getElementById("enseignantSelect").value;
+    const mdp = document.getElementById("passwordInput").value.trim();
+    const msg = document.getElementById("message");
+    msg.textContent = "";
+
+    if (data[etab]) {
+        const entry = data[etab].find(item => item.enseignant === nom);
+        if (entry && entry.mdp === mdp) {
+            window.open(entry.lien, "_blank");
+        } else {
+            msg.textContent = "❌ كلمة المرور غير صحيحة أو اختيار غير مكتمل";
+        }
+    }
+}
+</script>
+</body>
+</html>
